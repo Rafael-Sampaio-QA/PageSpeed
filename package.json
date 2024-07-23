@@ -1,0 +1,15 @@
+{
+  "name": "pagespeed",
+  "version": "1.0.0",
+  "description": "Repositorio para os testes via web do pagespeed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.13.1"
+  }
+}
