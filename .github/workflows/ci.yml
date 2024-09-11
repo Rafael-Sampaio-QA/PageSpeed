@@ -12,9 +12,14 @@ jobs:
         with:  
           command: npm run teste:GETapi
 
+      - name: Check network connectivity
+        run: |
+          ping -c 4 google.com
+
       - name: Send webhook to Google Chat
         run: |
-          response=$(curl -X POST -H 'Content-Type: application/json' \
+          set -e
+          response=$(curl -v -X POST -H 'Content-Type: application/json' \
           -d '{"text": "Teste Cypress concluído com sucesso!"}' \
           'https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54')
           echo "Response: $response"
