@@ -1,53 +1,3 @@
-/* describe('Validação de Métricas do PageSpeed Insights', () => {
-
-    const categories = ['performance', 'accessibility', 'best-practices', 'seo'];
-    const apiKey = 'AIzaSyDNjrUq_FHXDnLjz7EylktUp790F9AfreE';
-    const testUrl = 'https://eb81b0f1-fb07-446f-a9bc-7f135fdaeba7.preview.atdplatform.work/';
-    const apiEndpoint = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(testUrl)}&key=${apiKey}&category=${categories.join('&category=')}`;
-
-    it('Deve validar as métricas de desempenho, acessibilidade, práticas recomendadas e SEO', () => {
-
-
-        cy.request(apiEndpoint).then((response) => {
-
-            expect(response.status).to.eq(200);
-
-            const lighthouseResult = response.body.lighthouseResult;
-            const performanceScore = lighthouseResult.categories.performance.score || 0;
-            const accessibilityScore = lighthouseResult.categories.accessibility.score || 0;
-            const bestPracticesScore = lighthouseResult.categories['best-practices'].score || 0;
-            const seoScore = lighthouseResult.categories.seo.score || 0;
-            const fcp = response.body.lighthouseResult.audits['first-contentful-paint'].displayValue || 0;
-            const lcp = response.body.lighthouseResult.audits['largest-contentful-paint'].displayValue || 0;
-            const cls = response.body.lighthouseResult.audits['cumulative-layout-shift'].displayValue || 0;
-
-            cy.log(`Pontuação de Desempenho: ${performanceScore * 100}`);
-            cy.log(`Pontuação de Acessibilidade: ${accessibilityScore * 100}`);
-            cy.log(`Pontuação de Praticas Recomendadas: ${bestPracticesScore * 100}`);
-            cy.log(`Pontuação de SEO: ${seoScore * 100}`);
-            cy.log(`First Contentful Paint (FCP): ${fcp}`);
-            cy.log(`Largest Contentful Paint (LCP): ${lcp}`);
-            cy.log(`Cumulative Layout Shift (CLS): ${cls}`);
-
-
-            expect(performanceScore).to.be.a('number').and.to.be.gte(0.7);    // Pontuação de desempenho deve ser pelo menos 80%
-            expect(accessibilityScore).to.be.a('number').and.to.be.gte(0.7);  // Pontuação de acessibilidade deve ser pelo menos 90%
-            expect(bestPracticesScore).to.be.a('number').and.to.be.gte(0.7);  // Pontuação de práticas recomendadas deve ser pelo menos 90%
-            expect(seoScore).to.be.a('number').and.to.be.gte(0.7);            // Pontuação de SEO deve ser pelo menos 90%
-
-
-            expect(parseFloat(fcp)).to.be.lte(1.8); // FCP deve ser menor ou igual a 1.8s
-            expect(parseFloat(lcp)).to.be.lte(2.5); // LCP deve ser menor ou igual a 2.5s
-            expect(parseFloat(cls)).to.be.lte(0.1); // CLS deve ser menor ou igual a 0.1
-
-
-        });
-    });
-
-});
-
- */
-
 describe('Validação de Métricas do PageSpeed Insights (Mobile)', () => {
     
     
@@ -55,7 +5,7 @@ describe('Validação de Métricas do PageSpeed Insights (Mobile)', () => {
     const apiKey = 'AIzaSyDNjrUq_FHXDnLjz7EylktUp790F9AfreE';
     const urls = [
           'https://www.viasulbyd.com.br/',
-        /*   'https://www.viasulbyd.com.br/dolphin/',
+          'https://www.viasulbyd.com.br/dolphin/',
           'https://www.viasulbyd.com.br/seal/',
           'https://www.viasulbyd.com.br/han/',
           'https://www.viasulbyd.com.br/tan/',
@@ -67,7 +17,7 @@ describe('Validação de Métricas do PageSpeed Insights (Mobile)', () => {
           'https://www.viasulbyd.com.br/fale-conosco/',
           'https://www.viasulbyd.com.br/politica-de-privacidade/',
           'https://www.viasulbyd.com.br/ofertas/',
-          'https://www.viasulbyd.com.br/test-drive/', */
+          'https://www.viasulbyd.com.br/test-drive/',
      
     ];
 

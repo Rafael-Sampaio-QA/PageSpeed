@@ -4,7 +4,9 @@
   "description": "Repositorio para os testes via web do pagespeed",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:open": "cypress open",
+    "teste:GETapi": "cypress run --spec 'cypress/e2e/GETpageSpeed'"
+
   },
   "keywords": [],
   "author": "",
