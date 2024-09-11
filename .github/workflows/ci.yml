@@ -14,6 +14,7 @@ jobs:
 
       - name: Send webhook to Google Chat
         run: |
-          curl -X POST -H 'Content-Type: application/json' \
+          response=$(curl -X POST -H 'Content-Type: application/json' \
           -d '{"text": "Teste Cypress concluído com sucesso!"}' \
-          'https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54'
+          'https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54')
+          echo "Response: $response"
