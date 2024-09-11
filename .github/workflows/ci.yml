@@ -1,7 +1,7 @@
 name: End-to-end
 on: push
 jobs:
-  cypress-run:
+  cypress-run-api:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -11,3 +11,9 @@ jobs:
         uses: cypress-io/github-action@v6
         with:  
           command: npm run teste:GETapi
+
+      - name: Send webhook to Google Chat
+        run: |
+          curl -X POST -H 'Content-Type: application/json' \
+          -d '{"text": "Teste Cypress concluído com sucesso!"}' \
+          'https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54'
