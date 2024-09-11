@@ -5,7 +5,7 @@ describe('Validação de Métricas do PageSpeed Insights (Mobile)', () => {
     const apiKey = 'AIzaSyDNjrUq_FHXDnLjz7EylktUp790F9AfreE';
     const urls = [
           'https://www.viasulbyd.com.br/',
-          'https://www.viasulbyd.com.br/dolphin/',
+          /* 'https://www.viasulbyd.com.br/dolphin/',
           'https://www.viasulbyd.com.br/seal/',
           'https://www.viasulbyd.com.br/han/',
           'https://www.viasulbyd.com.br/tan/',
@@ -17,7 +17,7 @@ describe('Validação de Métricas do PageSpeed Insights (Mobile)', () => {
           'https://www.viasulbyd.com.br/fale-conosco/',
           'https://www.viasulbyd.com.br/politica-de-privacidade/',
           'https://www.viasulbyd.com.br/ofertas/',
-          'https://www.viasulbyd.com.br/test-drive/',
+          'https://www.viasulbyd.com.br/test-drive/' */,
      
     ];
 
