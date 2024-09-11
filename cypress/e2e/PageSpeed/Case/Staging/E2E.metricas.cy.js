@@ -3,6 +3,7 @@ describe('Acessar PageSpeed e garantir as métricas de performance via web', () 
     const urls = [
         'https://eb81b0f1-fb07-446f-a9bc-7f135fdaeba7.preview.atdplatform.work/',
         'https://79da3661-f3a5-4867-a927-d2d63d75970d.preview.atdplatform.work/',
+ /*        '',
         '',
         '',
         '',
@@ -11,8 +12,7 @@ describe('Acessar PageSpeed e garantir as métricas de performance via web', () 
         '',
         '',
         '',
-        '',
-        '',
+        '', */
     
     ];
     const valores = {
@@ -53,6 +53,7 @@ describe('Acessar PageSpeed e garantir as métricas de performance via web', () 
 
     beforeEach(() => {
         cy.visit(baseUrl);
+        cy.getAllCookies();
         cy.viewport(1480, 1020);
     });
 
