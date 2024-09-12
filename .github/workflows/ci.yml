@@ -13,17 +13,17 @@ jobs:
         with:
           command: npm run teste:GETapi
 
-      - name: Enviar mensagem g-chat
+      - name: Enviar Mensagem G-Chat
         if: always()
         env:
           WEBHOOK_URL: "https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54"
         run: |
           if [ "${{ steps.cypress.outcome }}" == "success" ]; then
             status="Todos os testes passaram com sucesso!"
-            icon="STATUS_GOOD" # Ícone verde
+            
           else
             status="Alguns testes falharam."
-            icon="STATUS_CRITICAL" # Ícone vermelho
+            
           fi
 
           json_payload=$(echo '{
@@ -32,7 +32,7 @@ jobs:
                 "header": {
                   "title": "Resultado da Pipeline: PageSpeedCase",
                   "subtitle": "'"${status}"'",
-                  "imageUrl": "https://media.istockphoto.com/id/894875516/pt/vetorial/exclamation-point-sign-in-red-triangle-vector-icon.jpg?s=612x612&w=0&k=20&c=jgIGL9n8R5jU7NturlS9AVXWi0_fUAh1n9gtpweHO1M=",
+                  "imageUrl": "https://www.finsmes.com/wp-content/uploads/2020/12/cypress.jpg",
                   "imageStyle": "AVATAR"
                 },
                 "sections": [
@@ -48,13 +48,13 @@ jobs:
                           "topLabel": "Status",
                           "content": "'"${status}"'",
                           "contentMultiline": "false",
-                          "icon": "'"${icon}"'",
+                          "icon": "DESCRIPTION",
                           "button": {
                             "textButton": {
                               "text": "Ver Detalhes",
                               "onClick": {
                                 "openLink": {
-                                  "url": "https://github.com/Rafael-Sampaio-QA/PageSpeed"
+                                  "url": ""
                                 }
                               }
                             }
@@ -69,4 +69,3 @@ jobs:
           }')
 
           curl -X POST -H "Content-Type: application/json" -d "$json_payload" "$WEBHOOK_URL"
-          
