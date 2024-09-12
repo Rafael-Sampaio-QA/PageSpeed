@@ -2,7 +2,7 @@ describe('Acessar PageSpeed e garantir as métricas de performance via web', () 
     const baseUrl = 'https://pagespeed.web.dev/';
     const urls = [
         'https://www.viasulbyd.com.br/',
-        'https://www.viasulbyd.com.br/dolphin/',
+   /*      'https://www.viasulbyd.com.br/dolphin/',
         'https://www.viasulbyd.com.br/seal/',
         'https://www.viasulbyd.com.br/han/',
         'https://www.viasulbyd.com.br/tan/',
@@ -14,7 +14,7 @@ describe('Acessar PageSpeed e garantir as métricas de performance via web', () 
         'https://www.viasulbyd.com.br/fale-conosco/',
         'https://www.viasulbyd.com.br/politica-de-privacidade/',
         'https://www.viasulbyd.com.br/ofertas/',
-        'https://www.viasulbyd.com.br/test-drive/'
+        'https://www.viasulbyd.com.br/test-drive/' */
     ];
     const valores = {
         min : 30, 

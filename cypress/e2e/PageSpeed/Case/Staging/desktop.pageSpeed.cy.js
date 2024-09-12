@@ -2,7 +2,7 @@
 
 const urls = {
     pageSpeed: 'https://pagespeed.web.dev/',
-    insiraURL: ''
+  
   };
   
   const valores = {
