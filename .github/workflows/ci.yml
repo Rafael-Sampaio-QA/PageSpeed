@@ -13,17 +13,17 @@ jobs:
         with:
           command: npm run teste:GETapi
 
-      - name: Enviar Mensagem G-Chat
+      - name: Send notification to Google Chat
         if: always()
         env:
           WEBHOOK_URL: "https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54"
         run: |
           if [ "${{ steps.cypress.outcome }}" == "success" ]; then
             status="Todos os testes passaram com sucesso!"
-            
+            color="#28a745" # Verde
           else
             status="Alguns testes falharam."
-            
+            color="#d73a49" # Vermelho
           fi
 
           json_payload=$(echo '{
@@ -32,7 +32,7 @@ jobs:
                 "header": {
                   "title": "Resultado da Pipeline: PageSpeedCase",
                   "subtitle": "'"${status}"'",
-                  "imageUrl": "https://www.finsmes.com/wp-content/uploads/2020/12/cypress.jpg",
+                  "imageUrl": "https://static-00.iconduck.com/assets.00/cypress-icon-2048x2048-swmlmjca.png",
                   "imageStyle": "AVATAR"
                 },
                 "sections": [
@@ -54,7 +54,7 @@ jobs:
                               "text": "Ver Detalhes",
                               "onClick": {
                                 "openLink": {
-                                  "url": ""
+                                  "url": "https://github.com/Rafael-Sampaio-QA/PageSpeed"
                                 }
                               }
                             }
@@ -69,3 +69,5 @@ jobs:
           }')
 
           curl -X POST -H "Content-Type: application/json" -d "$json_payload" "$WEBHOOK_URL"
+
+
