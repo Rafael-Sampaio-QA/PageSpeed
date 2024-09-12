@@ -1,4 +1,4 @@
-name: End-to-end
+name: PageSpeedCase
 on: push
 jobs:
   cypress-run-api:
@@ -9,30 +9,30 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        id: cypress # Definindo um ID para este passo
+        id: cypress 
         with:
           command: npm run teste:GETapi
 
-      - name: Send notification to Google Chat
-        if: always() # Este passo sempre será executado, independentemente do status anterior
+      - name: Enviar mensagem g-chat
+        if: always()
         env:
           WEBHOOK_URL: "https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54"
         run: |
           if [ "${{ steps.cypress.outcome }}" == "success" ]; then
             status="Todos os testes passaram com sucesso!"
-            color="#28a745" # Verde
+            icon="STATUS_GOOD" # Ícone verde
           else
             status="Alguns testes falharam."
-            color="#d73a49" # Vermelho
+            icon="STATUS_CRITICAL" # Ícone vermelho
           fi
 
           json_payload=$(echo '{
             "cards": [
               {
                 "header": {
-                  "title": "Resultado da Pipeline: End-to-end",
+                  "title": "Resultado da Pipeline: PageSpeedCase",
                   "subtitle": "'"${status}"'",
-                  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Cypress.io_logo.svg/1024px-Cypress.io_logo.svg.png",
+                  "imageUrl": "https://media.istockphoto.com/id/894875516/pt/vetorial/exclamation-point-sign-in-red-triangle-vector-icon.jpg?s=612x612&w=0&k=20&c=jgIGL9n8R5jU7NturlS9AVXWi0_fUAh1n9gtpweHO1M=",
                   "imageStyle": "AVATAR"
                 },
                 "sections": [
@@ -40,7 +40,7 @@ jobs:
                     "widgets": [
                       {
                         "textParagraph": {
-                          "text": "A execução da pipeline <b>End-to-end</b> foi concluída."
+                          "text": "A execução da pipeline <b>PageSpeedCase</b> foi concluída."
                         }
                       },
                       {
@@ -48,13 +48,13 @@ jobs:
                           "topLabel": "Status",
                           "content": "'"${status}"'",
                           "contentMultiline": "false",
-                          "icon": "DESCRIPTION",
+                          "icon": "'"${icon}"'",
                           "button": {
                             "textButton": {
                               "text": "Ver Detalhes",
                               "onClick": {
                                 "openLink": {
-                                  "url": "https://github.com/SeuRepositorio/actions/runs"
+                                  "url": "https://github.com/Rafael-Sampaio-QA/PageSpeed"
                                 }
                               }
                             }
@@ -69,3 +69,4 @@ jobs:
           }')
 
           curl -X POST -H "Content-Type: application/json" -d "$json_payload" "$WEBHOOK_URL"
+          
