@@ -1,0 +1,72 @@
+name: PageSpeedCase
+on: push
+jobs:
+  cypress-run-api:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        id: cypress 
+        with:
+          command: npm run cy:mobile
+
+      - name: Enviar resultado G-chat
+        if: always()
+        env:
+          WEBHOOK_URL: "https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54"
+        run: |
+          if [ "${{ steps.cypress.outcome }}" == "success" ]; then
+            status="Todos os testes passaram com sucesso!"
+            color="#28a745" # Verde
+          else
+            status="Alguns testes falharam."
+            color="#d73a49" # Vermelho
+          fi
+
+          json_payload=$(echo '{
+            "cards": [
+              {
+                "header": {
+                  "title": "Resultado da Pipeline: PageSpeedCase",
+                  "subtitle": "'"${status}"'",
+                  "imageUrl": "https://static-00.iconduck.com/assets.00/cypress-icon-2048x2048-swmlmjca.png",
+                  "imageStyle": "AVATAR"
+                },
+                "sections": [
+                  {
+                    "widgets": [
+                      {
+                        "textParagraph": {
+                          "text": "A execução da pipeline <b>PageSpeedCase</b> foi concluída."
+                        }
+                      },
+                      {
+                        "keyValue": {
+                          "topLabel": "Status",
+                          "content": "'"${status}"'",
+                          "contentMultiline": "false",
+                          "icon": "DESCRIPTION",
+                          "button": {
+                            "textButton": {
+                              "text": "Ver Detalhes",
+                              "onClick": {
+                                "openLink": {
+                                  "url": "https://github.com/Rafael-Sampaio-QA/PageSpeed"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }')
+
+          curl -X POST -H "Content-Type: application/json" -d "$json_payload" "$WEBHOOK_URL"
+

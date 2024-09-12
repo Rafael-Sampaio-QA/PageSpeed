@@ -12,9 +12,9 @@ module.exports = defineConfig({
     hideXhr: false
   },
   chromeWebSecurity: false,
-  experimentalStudio: true,
+  experimentalStudio: false,
   retries: {
-    runMode: 2,
+    runMode: 0,
     openMode: 0
   }
 });
