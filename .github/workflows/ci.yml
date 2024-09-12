@@ -11,7 +11,7 @@ jobs:
         uses: cypress-io/github-action@v6
         id: cypress 
         with:
-          command: npm run cy:mobile
+          command: npm run teste:mobile
 
       - name: Enviar resultado G-chat
         if: always()

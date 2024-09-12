@@ -6,7 +6,8 @@
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "cy:mobile": "cypress run --spec 'cypress/e2e/PageSpeedApi'"
+    "cy:mobile": "cypress run --spec 'cypress/e2e/PageSpeedApi'",
+    "teste:mobile": "cypress run --spec 'cypress/e2e/PageSpeedApi'"
   },
   "keywords": [],
   "author": "",
