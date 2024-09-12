@@ -2,7 +2,7 @@
 
 const urls = {
     pageSpeed: 'https://pagespeed.web.dev/',
-    insiraURL: 'https://www.viasulbyd.com.br/'
+  
   };
   
   const valores = {

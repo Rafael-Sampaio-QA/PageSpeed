@@ -1,20 +1,19 @@
 describe('Acessar PageSpeed e garantir as métricas de performance via web', () => {
     const baseUrl = 'https://pagespeed.web.dev/';
     const urls = [
-        'https://www.viasulbyd.com.br/',
-   /*      'https://www.viasulbyd.com.br/dolphin/',
-        'https://www.viasulbyd.com.br/seal/',
-        'https://www.viasulbyd.com.br/han/',
-        'https://www.viasulbyd.com.br/tan/',
-        'https://www.viasulbyd.com.br/dolphin-mini/',
-        'https://www.viasulbyd.com.br/song-plus/',
-        'https://www.viasulbyd.com.br/dolphin-plus/',
-        'https://www.viasulbyd.com.br/byd-king/',
-        'https://www.viasulbyd.com.br/quem-somos/',
-        'https://www.viasulbyd.com.br/fale-conosco/',
-        'https://www.viasulbyd.com.br/politica-de-privacidade/',
-        'https://www.viasulbyd.com.br/ofertas/',
-        'https://www.viasulbyd.com.br/test-drive/' */
+        'https://eb81b0f1-fb07-446f-a9bc-7f135fdaeba7.preview.atdplatform.work/',
+        'https://79da3661-f3a5-4867-a927-d2d63d75970d.preview.atdplatform.work/',
+ /*        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '', */
+    
     ];
     const valores = {
         min : 30, 
@@ -54,6 +53,7 @@ describe('Acessar PageSpeed e garantir as métricas de performance via web', () 
 
     beforeEach(() => {
         cy.visit(baseUrl);
+        cy.getAllCookies();
         cy.viewport(1480, 1020);
     });
 

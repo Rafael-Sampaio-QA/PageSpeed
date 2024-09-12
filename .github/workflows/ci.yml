@@ -11,7 +11,11 @@ jobs:
         uses: cypress-io/github-action@v6
         id: cypress 
         with:
+<<<<<<< HEAD
           command: npm run cy:mobile
+=======
+          command: npm run teste:GETapi
+>>>>>>> origin
 
       - name: Enviar resultado G-chat
         if: always()
@@ -27,6 +31,10 @@ jobs:
             color="#d73a49" # Vermelho
             imageUrl="https://th.bing.com/th/id/R.301c1124d94ad1b5bf4c176b6d6c888a?rik=cz3KZVHK414iIA&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fred-check-mark-transparent-background%2fred-check-mark-transparent-background-22.jpg&ehk=Jlgk67LB24hq77es%2fmcEaPNnzNGEwF8naLT%2f1ywaQAM%3d&risl=&pid=ImgRaw&r=0"
           fi
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin
           json_payload=$(echo '{
             "cards": [
               {
@@ -68,4 +76,9 @@ jobs:
               }
             ]
           }')
+<<<<<<< HEAD
           curl -X POST -H "Content-Type: application/json" -d "$json_payload" "$WEBHOOK_URL"
+=======
+
+          curl -X POST -H "Content-Type: application/json" -d "$json_payload" "$WEBHOOK_URL"
+>>>>>>> origin
