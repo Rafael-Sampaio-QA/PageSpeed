@@ -9,24 +9,16 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        with:  
+        id: cypress 
+        with:
           command: npm run teste:GETapi
 
-      - name: Check network connectivity
+      - name: Enviar mensagem para g-chat
+        if: always() # Este passo sempre será executado, independentemente do status anterior
         run: |
-          echo "Verificando conectividade de rede..."
-          ping -c 4 google.com
-
-      - name: Check curl version
-        run: |
-          echo "Verificando versão do curl..."
-          curl --version
-
-      - name: Send webhook to Google Chat
-        run: |
-          set -e
-          echo "Enviando webhook para o Google Chat..."
-          response=$(curl -v -X POST -H 'Content-Type: application/json' \
-          -d '{"text": "Teste Cypress concluído com sucesso!"}' \
-          'https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54')
-          echo "Response: $response"
+          if [ "${{ steps.cypress.outcome }}" == "success" ]; then
+            status="Todos os testes passaram com sucesso!"
+          else
+            status="Alguns testes falharam."
+          fi
+          curl -X POST -H "Content-Type: application/json" -d "{\"text\": \"${status}\"}" "https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54"
