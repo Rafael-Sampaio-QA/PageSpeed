@@ -13,7 +13,7 @@ jobs:
         with:
           command: npm run cy:mobile
 
-      - name: Enviar resultado G-chat
+      - name: Enviar Mensagem ao g-chat
         if: always()
         env:
           WEBHOOK_URL: "https://chat.googleapis.com/v1/spaces/AAAATzKXhvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=hKCSdPs13r28hOwKxJsTjx1c-ODv1qReIoe2VsBuR54"
@@ -21,19 +21,18 @@ jobs:
           if [ "${{ steps.cypress.outcome }}" == "success" ]; then
             status="Todos os testes passaram com sucesso!"
             color="#28a745" # Verde
-            imageUrl="https://w7.pngwing.com/pngs/485/477/png-transparent-check-mark-computer-icons-green-check-circle-angle-text-logo.png"
           else
             status="Alguns testes falharam."
             color="#d73a49" # Vermelho
-            imageUrl="https://th.bing.com/th/id/R.301c1124d94ad1b5bf4c176b6d6c888a?rik=cz3KZVHK414iIA&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fred-check-mark-transparent-background%2fred-check-mark-transparent-background-22.jpg&ehk=Jlgk67LB24hq77es%2fmcEaPNnzNGEwF8naLT%2f1ywaQAM%3d&risl=&pid=ImgRaw&r=0"
           fi
+
           json_payload=$(echo '{
             "cards": [
               {
                 "header": {
                   "title": "Resultado da Pipeline: PageSpeedCase",
                   "subtitle": "'"${status}"'",
-                  "imageUrl": "'"${imageUrl}"'",
+                  "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fbr%2Ffotos%2Fsinal-de-perigo&psig=AOvVaw1ZKGUN1Ed7U7vIMkkvNSYv&ust=1726234742189000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMiOh9rDvYgDFQAAAAAdAAAAABAE",
                   "imageStyle": "AVATAR"
                 },
                 "sections": [
@@ -55,7 +54,7 @@ jobs:
                               "text": "Ver Detalhes",
                               "onClick": {
                                 "openLink": {
-                                  "url": "https://github.com/Rafael-Sampaio-QA/PageSpeed"
+                                  "url": "https://github.com/SeuRepositorio/actions/runs"
                                 }
                               }
                             }
@@ -68,6 +67,7 @@ jobs:
               }
             ]
           }')
+
           curl -X POST -H "Content-Type: application/json" -d "$json_payload" "$WEBHOOK_URL"
 
-          
+
